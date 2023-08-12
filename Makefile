@@ -10,6 +10,8 @@ docker-push: check-env
 	docker login -u $(DOCKER_USER) --password $(DOCKER_PASSWD)
 	docker push drannoc/bypasscors
 
+update-remote: image-build docker-push
+
 build:
 	docker run --rm --user "$(id -u)":"$(id -g)" --network="host" -v "$(PWD)":/usr/src/app -w /usr/src/app golang:alpine go build -v -buildvcs=false
 
