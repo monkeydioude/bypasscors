@@ -2,7 +2,10 @@ FROM golang:alpine
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+
+COPY *.go ./
 RUN go build -v -o /usr/local/bin/bypasscors ./...
 
 EXPOSE 8080
