@@ -4,7 +4,7 @@ run:
 	docker run -it -p 8080:8080 --rm --name bypasscors drannoc/bypasscors
 
 image-build:
-	docker build -t drannoc/bypasscors .
+	docker build --network="host" -t drannoc/bypasscors .
 
 docker-push: check-env
 	docker login -u $(DOCKER_USER) --password $(DOCKER_PASSWD)
