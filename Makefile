@@ -13,7 +13,7 @@ docker-push: check-env
 update-remote: image-build docker-push
 
 build:
-	docker run --rm --user "$(id -u)":"$(id -g)" --network="host" -v "$(PWD)":/usr/src/bypasscors -w /usr/src/bypasscors golang:alpine go build -v -buildvcs=false
+	docker run --rm --user "$(id -u)":"$(id -g)" --network="host" -v "$(PWD_BYPASSCORS)":/usr/src/bypasscors -w /usr/src/bypasscors golang:alpine go build -v -buildvcs=false
 
 build-prod: build
 	rm -rf /home/mkd/go/bin/bypasscors
