@@ -11,7 +11,7 @@ docker-push: check-env
 	docker push drannoc/bypasscors
 
 build:
-	docker run --rm --user "$(id -u)":"$(id -g)" -v "$(PWD)":/usr/src/app -w /usr/src/app golang:alpine go build -v -buildvcs=false
+	docker run --rm --user "$(id -u)":"$(id -g)" --network="host" -v "$(PWD)":/usr/src/app -w /usr/src/app golang:alpine go build -v -buildvcs=false
 
 build-prod: build
 	rm -rf /home/mkd/go/bin/bypasscors
