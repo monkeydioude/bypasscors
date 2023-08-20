@@ -12,6 +12,9 @@ func main() {
 	m := moon.Moon()
 	m.AddHeader("Access-Control-Allow-Origin", "*")
 	m.MakeRouter(
+		moon.Get("/bypasscors/healthcheck", func(r *moon.Request) ([]byte, int, error) {
+			return []byte("Ok"), 200, nil
+		}),
 		moon.Get("/bypasscors/{url}", func(r *moon.Request) ([]byte, int, error) {
 			url := r.Matches["url"]
 			if r.HTTPRequest.URL.RawQuery != "" {
